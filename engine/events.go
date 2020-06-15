@@ -11,6 +11,6 @@ func HandleEvents(_event sdl.Event) {
 	switch _event.(type) {
 	case *sdl.QuitEvent:
 		fmt.Println("Quitting Engine...")
-		running = false
+		gameRunning = false
 	}
 }

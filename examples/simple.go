@@ -4,8 +4,12 @@ import (
 	"ghostlang.org/engine/engine"
 )
 
+var (
+	player *engine.Image
+)
+
 func load() {
-	//
+	player = engine.NewImage("player.png")
 }
 
 func update(dt uint32) {
@@ -13,7 +17,7 @@ func update(dt uint32) {
 }
 
 func draw() {
-	//
+	player.Draw(200, 200)
 }
 
 func main() {

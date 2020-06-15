@@ -3,13 +3,14 @@ package engine
 import (
 	"fmt"
 
+	"github.com/veandco/go-sdl2/img"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
 var (
-	engine  *Engine
-	running bool
-	err     error
+	gameEngine  *Engine
+	gameRunning bool
+	err         error
 )
 
 // Engine holds the bindings for SDL and all callback functions to
@@ -29,13 +30,13 @@ type Engine struct {
 
 // NewEngine initializes a new engine instance.
 func NewEngine(_title string) (engine *Engine) {
-	_engine := &Engine{}
+	engine = new(Engine)
 
-	_engine.title = _title
+	engine.title = _title
 
-	engine = _engine
+	gameEngine = engine
 
-	return _engine
+	return engine
 }
 
 // SetWindow defines the windows width and height.
@@ -72,7 +73,7 @@ func (engine *Engine) initialize() {
 		sdl.WINDOWPOS_UNDEFINED,
 		engine.width,
 		engine.height,
-		sdl.WINDOW_OPENGL)
+		sdl.WINDOW_SHOWN)
 
 	if err != nil {
 		panic(fmt.Sprintf("Engine error: Could not create window - %s", err))
@@ -84,11 +85,13 @@ func (engine *Engine) initialize() {
 		panic(fmt.Sprintf("Engine error: Could not create renderer - %s", err))
 	}
 
+	img.Init(img.INIT_JPG | img.INIT_PNG)
+
 	if engine.loadFunction != nil {
 		engine.loadFunction()
 	}
 
-	running = true
+	gameRunning = true
 }
 
 func (engine *Engine) update(dt uint32) {
@@ -128,7 +131,7 @@ func (engine *Engine) Run() {
 
 	var deltaTime, oldDeltaTime, newDeltaTime uint32 = 0, 0, 0
 
-	for running {
+	for gameRunning {
 		// Check for events and handle them
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 			HandleEvents(event)
@@ -149,7 +152,7 @@ func (engine *Engine) Run() {
 
 // Exit frees all resources used by Engine for a clean exit.
 func (engine *Engine) Exit() {
-	// freeResources()
+	freeResources()
 
 	engine.renderer.Destroy()
 
