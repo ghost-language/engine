@@ -15,12 +15,13 @@ const (
 )
 
 var (
-	err      error
-	window   *sdl.Window
-	renderer *sdl.Renderer
-	event    sdl.Event
-	running  bool
-	ticker   *time.Ticker
+	err           error
+	window        *sdl.Window
+	renderer      *sdl.Renderer
+	event         sdl.Event
+	running       bool
+	ticker        *time.Ticker
+	screenSurface *sdl.Surface
 )
 
 func load() {
