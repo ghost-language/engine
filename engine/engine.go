@@ -98,6 +98,7 @@ func (engine *Engine) update(dt uint32) {
 }
 
 func (engine *Engine) draw() {
+	engine.renderer.SetDrawColor(26, 32, 44, 255)
 	engine.renderer.Clear()
 
 	if engine.drawFunction != nil {
@@ -111,17 +112,15 @@ func (engine *Engine) draw() {
 func (engine *Engine) Run() {
 	defer engine.Exit()
 
-	fmt.Println("Running...")
-
-	if engine.loadFunction != nil {
+	if engine.loadFunction == nil {
 		fmt.Println("Engine warning: No load function present.")
 	}
 
-	if engine.updateFunction != nil {
+	if engine.updateFunction == nil {
 		fmt.Println("Engine warning: No update function present.")
 	}
 
-	if engine.drawFunction != nil {
+	if engine.drawFunction == nil {
 		fmt.Println("Engine warning: No draw function present.")
 	}
 
