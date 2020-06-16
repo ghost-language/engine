@@ -16,9 +16,10 @@ var (
 // Engine holds the bindings for SDL and all callback functions to
 // be called during the main game loop.
 type Engine struct {
-	loadFunction   func()
-	updateFunction func(dt uint32)
-	drawFunction   func()
+	loadFunction           func()
+	updateFunction         func(dt uint32)
+	drawFunction           func()
+	keyboardIsDownFunction func(scancode int)
 
 	title  string
 	width  int32
@@ -58,6 +59,11 @@ func (engine *Engine) SetUpdateFunction(_update func(dt uint32)) {
 // SetDrawFunction defines the draw function to be used by Engine.
 func (engine *Engine) SetDrawFunction(_draw func()) {
 	engine.drawFunction = _draw
+}
+
+// SetKeyboardIsDownFunction defines the keydown function to be used by Engine.
+func (engine *Engine) SetKeyboardIsDownFunction(_keyboardIsDown func(scancode int)) {
+	engine.keyboardIsDownFunction = _keyboardIsDown
 }
 
 func (engine *Engine) initialize() {
