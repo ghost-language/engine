@@ -1,23 +1,35 @@
 package main
 
 import (
+	"fmt"
+
 	"ghostlang.org/engine/engine"
 )
 
+// Entity defines a new object that interacts with the game world.
+type Entity struct {
+	sprite *engine.Image
+	x      int
+	y      int
+}
+
 var (
-	player *engine.Image
+	player *Entity
 )
 
 func load() {
-	player = engine.NewImage("player.png")
+	player = &Entity{}
+	player.sprite = engine.NewImage("player.png")
 }
 
 func update(dt uint32) {
-	//
+	player.x++
+	player.y++
+	fmt.Printf("x: %d, y: %d, dt: %d\n", player.x, player.y, dt)
 }
 
 func draw() {
-	player.Draw(200, 200)
+	player.sprite.Draw(player.x, player.y)
 }
 
 func main() {
