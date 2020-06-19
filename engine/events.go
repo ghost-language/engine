@@ -24,7 +24,7 @@ func HandleKeyboardEvents() {
 	// 	    uint8_t* state = SDL_GetKeyboardState(NULL);
 	// 	    return state[scancode];
 	// }
-	if gameEngine.keyboardIsDownFunction != nil {
-		gameEngine.keyboardIsDownFunction(sdl.GetKeyboardState())
+	if gameEngine.keyPressedFunction != nil {
+		gameEngine.keyPressedFunction(sdl.GetKeyboardState())
 	}
 }

@@ -33,7 +33,7 @@ func draw() {
 	player.sprite.Draw(player.x, player.y)
 }
 
-func keyboardIsDown(state []uint8) {
+func keypressed(state []uint8) {
 	if state[sdl.SCANCODE_RIGHT] == 1 {
 		player.x += player.speed
 	}
@@ -55,24 +55,14 @@ func keyboardIsDown(state []uint8) {
 	}
 }
 
-func contains(s []uint8, e uint8) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
-}
-
 func main() {
 	engine := engine.NewEngine("Simple Example")
 	engine.SetWindow(800, 600)
-	// engine.SetFPS(120)
 
 	engine.SetLoadFunction(load)
 	engine.SetUpdateFunction(update)
 	engine.SetDrawFunction(draw)
-	engine.SetKeyboardIsDownFunction(keyboardIsDown)
+	engine.SetKeyPressedFunction(keypressed)
 
 	engine.Run()
 }
