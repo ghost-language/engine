@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"ghostlang.org/engine/engine"
 	"github.com/veandco/go-sdl2/sdl"
 )
@@ -46,6 +48,10 @@ func keyboardIsDown(state []uint8) {
 
 	if state[sdl.SCANCODE_DOWN] == 1 {
 		player.y += player.speed
+	}
+
+	if state[sdl.SCANCODE_SPACE] == 1 {
+		fmt.Println("Fire!")
 	}
 }
 
