@@ -11,19 +11,21 @@ var (
 	gameEngine  *Engine
 	gameRunning bool
 	err         error
+	frameDelay  uint32
 )
 
 // Engine holds the bindings for SDL and all callback functions to
 // be called during the main game loop.
 type Engine struct {
 	loadFunction           func()
-	updateFunction         func(dt uint32)
+	updateFunction         func()
 	drawFunction           func()
 	keyboardIsDownFunction func(scancode int)
 
 	title  string
 	width  int32
 	height int32
+	fps    uint32
 
 	window   *sdl.Window
 	renderer *sdl.Renderer
@@ -34,7 +36,9 @@ func NewEngine(_title string) (engine *Engine) {
 	engine = new(Engine)
 
 	engine.title = _title
+	engine.fps = 60
 
+	frameDelay = 1000 / engine.fps
 	gameEngine = engine
 
 	return engine
@@ -46,13 +50,24 @@ func (engine *Engine) SetWindow(_width int32, _height int32) {
 	engine.height = _height
 }
 
+// SetTitle defines the title of the window.
+func (engine *Engine) SetTitle(_title string) {
+	engine.title = _title
+}
+
+// SetFPS defines the desired frames per second threshold.
+func (engine *Engine) SetFPS(_fps uint32) {
+	engine.fps = _fps
+	frameDelay = 1000 / engine.fps
+}
+
 // SetLoadFunction defines the load function to be used by Engine.
 func (engine *Engine) SetLoadFunction(_load func()) {
 	engine.loadFunction = _load
 }
 
 // SetUpdateFunction defines the update function to be used by Engine.
-func (engine *Engine) SetUpdateFunction(_update func(dt uint32)) {
+func (engine *Engine) SetUpdateFunction(_update func()) {
 	engine.updateFunction = _update
 }
 
@@ -100,9 +115,9 @@ func (engine *Engine) initialize() {
 	gameRunning = true
 }
 
-func (engine *Engine) update(dt uint32) {
+func (engine *Engine) update() {
 	if engine.updateFunction != nil {
-		engine.updateFunction(dt)
+		engine.updateFunction()
 	}
 }
 
@@ -135,24 +150,23 @@ func (engine *Engine) Run() {
 
 	engine.initialize()
 
-	var deltaTime, oldDeltaTime, newDeltaTime uint32 = 0, 0, 0
-
 	for gameRunning {
+		frameStart := sdl.GetTicks()
+
 		// Check for events and handle them
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 			HandleEvents(event)
 		}
 
-		// Calculate delta time
-		newDeltaTime = sdl.GetTicks()
-		deltaTime = newDeltaTime - oldDeltaTime
-		oldDeltaTime = newDeltaTime
-
-		engine.update(deltaTime)
+		engine.update()
 		engine.draw()
 
+		frameTime := sdl.GetTicks() - frameStart
+
 		// Give the CPU some time to run calculations
-		sdl.Delay(1)
+		if frameDelay > frameTime {
+			sdl.Delay(frameDelay - frameTime)
+		}
 	}
 }
 

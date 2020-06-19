@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"ghostlang.org/engine/engine"
 )
 
@@ -21,13 +19,11 @@ var (
 func load() {
 	player = &Entity{}
 	player.sprite = engine.NewImage("player.png")
-	player.speed = 10
+	player.speed = 5
 }
 
-func update(dt uint32) {
-	// player.x++
-	// player.y++
-	// fmt.Printf("x: %d, y: %d, dt: %d\n", player.x, player.y, dt)
+func update() {
+	//
 }
 
 func draw() {
@@ -45,12 +41,12 @@ func keyboardIsDown(scancode int) {
 	case 82:
 		player.y -= player.speed
 	}
-	fmt.Printf("Pressing key... %d\n", scancode)
 }
 
 func main() {
 	engine := engine.NewEngine("Simple Example")
 	engine.SetWindow(800, 600)
+	engine.SetFPS(120)
 
 	engine.SetLoadFunction(load)
 	engine.SetUpdateFunction(update)
