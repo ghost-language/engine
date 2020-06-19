@@ -2,6 +2,7 @@ package main
 
 import (
 	"ghostlang.org/engine/engine"
+	"github.com/veandco/go-sdl2/sdl"
 )
 
 // Entity defines a new object that interacts with the game world.
@@ -30,23 +31,37 @@ func draw() {
 	player.sprite.Draw(player.x, player.y)
 }
 
-func keyboardIsDown(scancode int) {
-	switch scancode {
-	case 79:
+func keyboardIsDown(state []uint8) {
+	if state[sdl.SCANCODE_RIGHT] == 1 {
 		player.x += player.speed
-	case 81:
-		player.y += player.speed
-	case 80:
+	}
+
+	if state[sdl.SCANCODE_LEFT] == 1 {
 		player.x -= player.speed
-	case 82:
+	}
+
+	if state[sdl.SCANCODE_UP] == 1 {
 		player.y -= player.speed
 	}
+
+	if state[sdl.SCANCODE_DOWN] == 1 {
+		player.y += player.speed
+	}
+}
+
+func contains(s []uint8, e uint8) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
 }
 
 func main() {
 	engine := engine.NewEngine("Simple Example")
 	engine.SetWindow(800, 600)
-	engine.SetFPS(120)
+	// engine.SetFPS(120)
 
 	engine.SetLoadFunction(load)
 	engine.SetUpdateFunction(update)

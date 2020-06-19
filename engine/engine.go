@@ -20,7 +20,7 @@ type Engine struct {
 	loadFunction           func()
 	updateFunction         func()
 	drawFunction           func()
-	keyboardIsDownFunction func(scancode int)
+	keyboardIsDownFunction func(state []uint8)
 
 	title  string
 	width  int32
@@ -77,7 +77,7 @@ func (engine *Engine) SetDrawFunction(_draw func()) {
 }
 
 // SetKeyboardIsDownFunction defines the keydown function to be used by Engine.
-func (engine *Engine) SetKeyboardIsDownFunction(_keyboardIsDown func(scancode int)) {
+func (engine *Engine) SetKeyboardIsDownFunction(_keyboardIsDown func(state []uint8)) {
 	engine.keyboardIsDownFunction = _keyboardIsDown
 }
 
@@ -100,7 +100,7 @@ func (engine *Engine) initialize() {
 		panic(fmt.Sprintf("Engine error: Could not create window - %s", err))
 	}
 
-	engine.renderer, err = sdl.CreateRenderer(engine.window, -1, sdl.RENDERER_ACCELERATED)
+	engine.renderer, err = sdl.CreateRenderer(engine.window, -1, sdl.RENDERER_ACCELERATED|sdl.RENDERER_PRESENTVSYNC)
 
 	if err != nil {
 		panic(fmt.Sprintf("Engine error: Could not create renderer - %s", err))
@@ -157,6 +157,8 @@ func (engine *Engine) Run() {
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 			HandleEvents(event)
 		}
+
+		HandleKeyboardEvents()
 
 		engine.update()
 		engine.draw()
