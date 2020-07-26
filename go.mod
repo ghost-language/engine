@@ -1,4 +1,4 @@
-module ghostlang.org/engine
+module ghostlang.org/x/engine
 
 go 1.14
 

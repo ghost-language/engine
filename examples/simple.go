@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"ghostlang.org/engine/engine"
+	"ghostlang.org/x/engine/engine"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
