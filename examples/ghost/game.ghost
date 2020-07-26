@@ -1,0 +1,1 @@
+draw_image('player.png', 100, 100)
