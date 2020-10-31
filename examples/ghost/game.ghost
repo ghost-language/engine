@@ -1,1 +1,1 @@
-draw_image('./examples/ghost/player.png', 100, 100)
+Graphics.draw('./examples/ghost/player.png', 100, 100)
