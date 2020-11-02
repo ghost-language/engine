@@ -11,6 +11,7 @@ import (
 	"ghostlang.org/x/engine/engine"
 	"ghostlang.org/x/engine/graphics"
 	"ghostlang.org/x/ghost/ghost"
+	"ghostlang.org/x/ghost/object"
 )
 
 var (
@@ -66,17 +67,40 @@ func main() {
 	engine := engine.NewEngine("Simple Ghost Example")
 	engine.SetWindow(800, 600)
 
+	engine.SetLoadFunction(load)
+	engine.SetUpdateFunction(update)
 	engine.SetDrawFunction(draw)
 
 	ghost.RegisterFunction("Graphics.draw", graphics.DrawFunction)
 
 	ghost.NewScript(string(b))
+	env := ghost.Evaluate()
 
-	engine.Run()
+	engine.Run(env)
 }
 
-func draw() {
-	ghost.Evaluate()
+func load(env *object.Environment) {
+	ghost.Call(`
+		if (load) {
+			load()
+		}
+	`, env)
+}
+
+func update(env *object.Environment) {
+	ghost.Call(`
+		if (update) {
+			update()
+		}
+	`, env)
+}
+
+func draw(env *object.Environment) {
+	ghost.Call(`
+		if (draw) {
+			draw()
+		}
+	`, env)
 }
 
 func showHelp() {

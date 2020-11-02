@@ -1,7 +1,15 @@
-ghostlang.org/x/ghost v0.0.0-20200725211409-a62ae482877d h1:cVIZbgPSTGiCq0XTxZ7tHgzWVD+hjDE7cC1TCstQxW8=
-ghostlang.org/x/ghost v0.0.0-20200725211409-a62ae482877d/go.mod h1:WpZz11jlR3aZeObSvJE9IASGcBeRNFt3NQcfnlbQXCg=
 ghostlang.org/x/ghost v0.5.0 h1:J32ehVHiDMvCOCEgnbvCGoA0+05UkqzaZycyBj2HzoE=
 ghostlang.org/x/ghost v0.5.0/go.mod h1:iPrVh1LbE9ON5OQI01K8UTeOtVAQRHpCM3hmXXELlM8=
+ghostlang.org/x/ghost v0.5.1-0.20201101035203-1da9ee43bde3 h1:SmQNLv8tQM3UPGx9my+jdeC5MN+zCgSp0Xks/nNtiT0=
+ghostlang.org/x/ghost v0.5.1-0.20201101035203-1da9ee43bde3/go.mod h1:iPrVh1LbE9ON5OQI01K8UTeOtVAQRHpCM3hmXXELlM8=
+ghostlang.org/x/ghost v0.5.1-0.20201101041514-8bdba23049a1 h1:RxvynDM0Hy/Q71SKmwKIIHjec/8i8RE3IHkxuNczB74=
+ghostlang.org/x/ghost v0.5.1-0.20201101041514-8bdba23049a1/go.mod h1:iPrVh1LbE9ON5OQI01K8UTeOtVAQRHpCM3hmXXELlM8=
+ghostlang.org/x/ghost v0.5.1-0.20201101043825-98ebfc032129 h1:Nkyco1OUFTIMv0Db7LyNni3Tfv2eOZDS9EJ9jZSsodI=
+ghostlang.org/x/ghost v0.5.1-0.20201101043825-98ebfc032129/go.mod h1:iPrVh1LbE9ON5OQI01K8UTeOtVAQRHpCM3hmXXELlM8=
+ghostlang.org/x/ghost v0.5.1-0.20201101045407-bd8b341c2ca0 h1:1/C/lYeviADRjlLxP6EJ4EnwvQ5D5GmbS0UK8fkAcK4=
+ghostlang.org/x/ghost v0.5.1-0.20201101045407-bd8b341c2ca0/go.mod h1:iPrVh1LbE9ON5OQI01K8UTeOtVAQRHpCM3hmXXELlM8=
+ghostlang.org/x/ghost v0.5.1-0.20201102184329-669d2c9bbeb9 h1:7koe/Yhwqraniqy5giHuvwizxLc5h9cZElAHNOarRv8=
+ghostlang.org/x/ghost v0.5.1-0.20201102184329-669d2c9bbeb9/go.mod h1:iPrVh1LbE9ON5OQI01K8UTeOtVAQRHpCM3hmXXELlM8=
 github.com/shopspring/decimal v1.2.0 h1:abSATXmQEYyShuxI4/vyW3tV1MrKAJzCZ/0zLUXYbsQ=
 github.com/shopspring/decimal v1.2.0/go.mod h1:DKyhrW/HYNuLGql+MJL6WCR6knT2jwCFRcu2hWCYk4o=
 github.com/veandco/go-sdl2 v0.4.4 h1:coOJGftOdvNvGoUIZmm4XD+ZRQF4mg9ZVHmH3/42zFQ=

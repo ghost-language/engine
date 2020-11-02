@@ -1,1 +1,18 @@
-Graphics.draw('./examples/ghost/player.png', 100, 100)
+player := {
+    'image': './examples/ghost/player.png',
+    'x': 100,
+    'y': 100
+}
+
+function load() {
+    print("game loaded")
+}
+
+function update() {
+    player.x := player.x + 1
+    player.y := player.y + 1
+}
+
+function draw() {
+    Graphics.draw(player.image, player.x, player.y)
+}

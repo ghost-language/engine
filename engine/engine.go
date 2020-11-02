@@ -3,6 +3,7 @@ package engine
 import (
 	"fmt"
 
+	"ghostlang.org/x/ghost/object"
 	"github.com/veandco/go-sdl2/img"
 	"github.com/veandco/go-sdl2/sdl"
 )
@@ -17,9 +18,9 @@ var (
 // Engine holds the bindings for SDL and all callback functions to
 // be called during the main game loop.
 type Engine struct {
-	loadFunction       func()
-	updateFunction     func()
-	drawFunction       func()
+	loadFunction       func(env *object.Environment)
+	updateFunction     func(env *object.Environment)
+	drawFunction       func(env *object.Environment)
 	keyPressedFunction func(state []uint8)
 
 	title  string
@@ -62,17 +63,17 @@ func (engine *Engine) SetFPS(_fps uint32) {
 }
 
 // SetLoadFunction defines the load function to be used by Engine.
-func (engine *Engine) SetLoadFunction(_load func()) {
+func (engine *Engine) SetLoadFunction(_load func(env *object.Environment)) {
 	engine.loadFunction = _load
 }
 
 // SetUpdateFunction defines the update function to be used by Engine.
-func (engine *Engine) SetUpdateFunction(_update func()) {
+func (engine *Engine) SetUpdateFunction(_update func(env *object.Environment)) {
 	engine.updateFunction = _update
 }
 
 // SetDrawFunction defines the draw function to be used by Engine.
-func (engine *Engine) SetDrawFunction(_draw func()) {
+func (engine *Engine) SetDrawFunction(_draw func(env *object.Environment)) {
 	engine.drawFunction = _draw
 }
 
@@ -81,7 +82,7 @@ func (engine *Engine) SetKeyPressedFunction(_keyPressed func(state []uint8)) {
 	engine.keyPressedFunction = _keyPressed
 }
 
-func (engine *Engine) initialize() {
+func (engine *Engine) initialize(env *object.Environment) {
 	err = sdl.Init(sdl.INIT_EVERYTHING)
 
 	if err != nil {
@@ -109,31 +110,31 @@ func (engine *Engine) initialize() {
 	img.Init(img.INIT_JPG | img.INIT_PNG)
 
 	if engine.loadFunction != nil {
-		engine.loadFunction()
+		engine.loadFunction(env)
 	}
 
 	gameRunning = true
 }
 
-func (engine *Engine) update() {
+func (engine *Engine) update(env *object.Environment) {
 	if engine.updateFunction != nil {
-		engine.updateFunction()
+		engine.updateFunction(env)
 	}
 }
 
-func (engine *Engine) draw() {
+func (engine *Engine) draw(env *object.Environment) {
 	engine.renderer.SetDrawColor(26, 32, 44, 255)
 	engine.renderer.Clear()
 
 	if engine.drawFunction != nil {
-		engine.drawFunction()
+		engine.drawFunction(env)
 	}
 
 	engine.renderer.Present()
 }
 
 // Run the main game loop.
-func (engine *Engine) Run() {
+func (engine *Engine) Run(env *object.Environment) {
 	defer engine.Exit()
 
 	if engine.loadFunction == nil {
@@ -148,7 +149,7 @@ func (engine *Engine) Run() {
 		fmt.Println("Engine warning: No draw function present.")
 	}
 
-	engine.initialize()
+	engine.initialize(env)
 
 	for gameRunning {
 		frameStart := sdl.GetTicks()
@@ -160,8 +161,8 @@ func (engine *Engine) Run() {
 
 		HandleKeyboardEvents()
 
-		engine.update()
-		engine.draw()
+		engine.update(env)
+		engine.draw(env)
 
 		frameTime := sdl.GetTicks() - frameStart
 
