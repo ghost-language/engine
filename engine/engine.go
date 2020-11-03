@@ -78,7 +78,7 @@ func (engine *Engine) SetDrawFunction(_draw func(env *object.Environment)) {
 }
 
 // SetKeyPressedFunction defines the keydown function to be used by Engine.
-func (engine *Engine) SetKeyPressedFunction(_keyPressed func(state []uint8)) {
+func (engine *Engine) SetKeyPressedFunction(env *object.Environment, _keyPressed func(state []uint8)) {
 	engine.keyPressedFunction = _keyPressed
 }
 

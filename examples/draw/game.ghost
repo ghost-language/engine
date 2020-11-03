@@ -1,0 +1,24 @@
+state := {}
+
+function load() {
+    state.player := {
+        'image': './examples/draw/player.png',
+        'x': 50,
+        'y': 50,
+        'update': function() {
+            state.player.x := state.player.x + 5
+            state.player.y := state.player.y + 5
+        },
+        'draw': function() {
+            Graphics.draw(state.player.image, state.player.x, state.player.y)
+        }
+    }
+}
+
+function update() {
+    state.player.update()
+}
+
+function draw() {
+    state.player.draw()
+}

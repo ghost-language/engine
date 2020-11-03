@@ -1,4 +1,6 @@
-# Engine
+<p align="center"><img src="logo.svg" height="200"></p>
+
+## About Engine
 Engine is a simple framework to make 2D games in Ghost.
 
 ## Status
@@ -38,3 +40,11 @@ Called continuously where calculations and other deterministic factors should be
 
 #### `draw()`
 Much like `update`, this function is called continuously, allowing you to draw and update the screen.
+
+## Acknowledgements & Resources
+- **[Dome](https://domeengine.com/)** for the inspiration.
+- **[Love2D](https://love2d.org/)** for the inspiration.
+- **[Pico 8](https://www.lexaloffle.com/pico-8.php)** for the inspiration.
+- **[SDL2](https://github.com/veandco/go-sdl2)** for audio, keyboard, mouse, joystick, and graphics hardware support.
+- **[go-sdl2](https://github.com/veandco/go-sdl2)** for the Go-specific SDL2 bindings.
+- **[Silver](https://poppyworks.itch.io/silver)** for the multi-lingual pixel font.
