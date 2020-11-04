@@ -1,11 +1,12 @@
 GOPATH:=$(shell go env GOPATH)
 
-.PHONY: build clean
+.PHONY: build compile clean
 
-build: build-mac
-
-build-mac: clean
+build: clean
 	@go build -o dist/engine *.go
+
+compile: clean
+	@go build -tags static -ldflags "-s -w" -o dist/engine *.go
 
 clean:
 	@rm -rf dist/engine

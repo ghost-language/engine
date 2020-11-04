@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"path/filepath"
 
 	"ghostlang.org/x/engine/engine"
 	"ghostlang.org/x/ghost/ghost"
@@ -44,17 +45,42 @@ func main() {
 		os.Exit(0)
 	}
 
-	if flagHelp || len(args) == 0 {
+	if flagHelp {
 		showHelp()
 		os.Exit(2)
 	}
 
 	console := Console{args}
 
-	f, err := os.Open(console.args[0])
+	var f *os.File
+	var err error
 
-	if err != nil {
-		log.Fatalf("could not open source file %s: %s", console.args[0], err)
+	if len(console.args) == 0 {
+		// Do we have a main.ghost file present?
+
+		ex, err := os.Executable()
+
+		if err != nil {
+			panic(err)
+		}
+
+		exPath := filepath.Dir(ex)
+		fmt.Println(exPath)
+
+		mainFile, _ := filepath.Abs(exPath + "/main.ghost")
+		f, err = os.Open(mainFile)
+
+		if err != nil {
+			log.Fatalf("could not find main.ghost: %s", err)
+			showHelp()
+			os.Exit(2)
+		}
+	} else {
+		f, err = os.Open(console.args[0])
+
+		if err != nil {
+			log.Fatalf("could not open source file %s: %s", console.args[0], err)
+		}
 	}
 
 	b, err := ioutil.ReadAll(f)
