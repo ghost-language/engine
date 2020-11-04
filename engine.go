@@ -9,8 +9,6 @@ import (
 	"path"
 
 	"ghostlang.org/x/engine/engine"
-	"ghostlang.org/x/engine/graphics"
-	"ghostlang.org/x/engine/keyboard"
 	"ghostlang.org/x/ghost/ghost"
 	"ghostlang.org/x/ghost/object"
 )
@@ -72,8 +70,8 @@ func main() {
 	engine.SetUpdateFunction(update)
 	engine.SetDrawFunction(draw)
 
-	ghost.RegisterFunction("Graphics.draw", graphics.DrawFunction)
-	ghost.RegisterFunction("Keyboard.isDown", keyboard.IsDownFunction)
+	ghost.RegisterFunction("Graphics.draw", engine.GraphicsDrawFunction)
+	ghost.RegisterFunction("Keyboard.isDown", engine.KeyboardIsDownFunction)
 
 	ghost.NewScript(string(b))
 	env := ghost.Evaluate()

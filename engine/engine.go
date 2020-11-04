@@ -18,10 +18,10 @@ var (
 // Engine holds the bindings for SDL and all callback functions to
 // be called during the main game loop.
 type Engine struct {
-	loadFunction       func(env *object.Environment)
-	updateFunction     func(env *object.Environment)
-	drawFunction       func(env *object.Environment)
-	keyPressedFunction func(state []uint8)
+	loadFunction   func(env *object.Environment)
+	updateFunction func(env *object.Environment)
+	drawFunction   func(env *object.Environment)
+	KeyState       []uint8
 
 	title  string
 	width  int32
@@ -75,11 +75,6 @@ func (engine *Engine) SetUpdateFunction(_update func(env *object.Environment)) {
 // SetDrawFunction defines the draw function to be used by Engine.
 func (engine *Engine) SetDrawFunction(_draw func(env *object.Environment)) {
 	engine.drawFunction = _draw
-}
-
-// SetKeyPressedFunction defines the keydown function to be used by Engine.
-func (engine *Engine) SetKeyPressedFunction(env *object.Environment, _keyPressed func(state []uint8)) {
-	engine.keyPressedFunction = _keyPressed
 }
 
 func (engine *Engine) initialize(env *object.Environment) {
@@ -151,15 +146,22 @@ func (engine *Engine) Run(env *object.Environment) {
 
 	engine.initialize(env)
 
-	for gameRunning {
-		frameStart := sdl.GetTicks()
+	engine.KeyState = sdl.GetKeyboardState()
 
+	for gameRunning {
 		// Check for events and handle them
 		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
-			HandleEvents(event)
+			switch event.(type) {
+			case *sdl.QuitEvent:
+				fmt.Println("Quitting Engine...")
+				gameRunning = false
+				break
+			case *sdl.KeyboardEvent:
+				// fmt.Println("\n\nKeyboard event detected...")
+			}
 		}
 
-		HandleKeyboardEvents()
+		frameStart := sdl.GetTicks()
 
 		engine.update(env)
 		engine.draw(env)
