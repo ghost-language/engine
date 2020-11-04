@@ -18,7 +18,8 @@ var (
 	flagHelp    bool
 )
 
-type Game struct {
+// Console holds the passed values through the command line.
+type Console struct {
 	args []string
 }
 
@@ -48,12 +49,12 @@ func main() {
 		os.Exit(2)
 	}
 
-	game := Game{args}
+	console := Console{args}
 
-	f, err := os.Open(game.args[0])
+	f, err := os.Open(console.args[0])
 
 	if err != nil {
-		log.Fatalf("could not open source file %s: %s", game.args[0], err)
+		log.Fatalf("could not open source file %s: %s", console.args[0], err)
 	}
 
 	b, err := ioutil.ReadAll(f)
