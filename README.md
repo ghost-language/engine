@@ -1,9 +1,8 @@
 <p align="center"><img src="logo.svg" height="200"></p>
+<p align="center"><img src="bounce.gif" width="800"></p>
 
 ## About Engine
 Engine is a simple framework to make 2D games in Ghost.
-
-<p align="center"><img src="bounce.gif" width="400"></p>
 
 ## Status
 Currently messing around with SDL and experimenting on what the API should look like.
