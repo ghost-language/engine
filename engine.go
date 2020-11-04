@@ -70,8 +70,15 @@ func main() {
 	engine.SetUpdateFunction(update)
 	engine.SetDrawFunction(draw)
 
+	// Graphics Functions
 	ghost.RegisterFunction("Graphics.draw", engine.GraphicsDrawFunction)
+
+	// Keyboard Functions
 	ghost.RegisterFunction("Keyboard.isDown", engine.KeyboardIsDownFunction)
+
+	// Window Functions
+	ghost.RegisterFunction("Window.width", engine.WindowWidthFunction)
+	ghost.RegisterFunction("Window.height", engine.WindowHeightFunction)
 
 	ghost.NewScript(string(b))
 	env := ghost.Evaluate()
