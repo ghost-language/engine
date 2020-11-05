@@ -8,13 +8,16 @@ Engine is a simple framework to make 2D games in Ghost.
 Currently messing around with SDL and experimenting on what the API should look like.
 
 ## Requirements
+Below are the requirements necessary if working with the Engine source code directly.
+
 - SDL2
 - SDL2_image
+- SDL2_ttf
 
 Requirements can be installed through brew on Mac:
 
 ```
-$ brew install sdl2 sdl2_image
+$ brew install sdl2 sdl2_image sdl2_ttf
 ```
 
 ## Notes
