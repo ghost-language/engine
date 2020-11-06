@@ -1,0 +1,33 @@
+state := {}
+
+function load() {
+    Window.title("Draw Demo")
+
+    state.player := {
+        'image': './examples/draw/player.png',
+        'x': 350,
+        'y': 260
+    }
+}
+
+function update() {
+    if (Keyboard.isDown("down")) {
+        state.player.y := state.player.y + 5
+    }
+
+    if (Keyboard.isDown("up")) {
+        state.player.y := state.player.y - 5
+    }
+
+    if (Keyboard.isDown("left")) {
+        state.player.x := state.player.x - 5
+    }
+
+    if (Keyboard.isDown("right")) {
+        state.player.x := state.player.x + 5
+    }
+}
+
+function draw() {
+    Graphics.draw(state.player.image, state.player.x, state.player.y)
+}

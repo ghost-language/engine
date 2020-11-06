@@ -1,0 +1,33 @@
+state := {}
+
+function load() {
+    Window.title("Simple Demo")
+
+    state.player := {
+        'x': 400,
+        'y': 300,
+    }
+}
+
+function update() {
+    if (Keyboard.isDown("down")) {
+        state.player.y := state.player.y + 5
+    }
+
+    if (Keyboard.isDown("up")) {
+        state.player.y := state.player.y - 5
+    }
+
+    if (Keyboard.isDown("left")) {
+        state.player.x := state.player.x - 5
+    }
+
+    if (Keyboard.isDown("right")) {
+        state.player.x := state.player.x + 5
+    }
+}
+
+function draw() {
+    Graphics.setColor(79, 209, 197)
+    Graphics.filledRectangle(state.player.x, state.player.y, 10, 10)
+}

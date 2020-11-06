@@ -1,9 +1,9 @@
 function load() {
-    Window.title("Engine Graphics Demo")
+    Window.title("Graphics Demo")
 }
 
 function draw() {
-    Graphics.draw('./examples/pixel/player.png', 100, 100)
+    Graphics.draw('./examples/graphics/player.png', 100, 100)
 
     Graphics.setColor(255, 0, 0)
     Graphics.pixel(400, 300)
