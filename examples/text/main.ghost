@@ -1,0 +1,11 @@
+load() {
+
+}
+
+update() {
+
+}
+
+draw() {
+    Graphics.print("Hello world")
+}

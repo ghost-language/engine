@@ -6,6 +6,7 @@ import (
 	"ghostlang.org/x/ghost/object"
 	"github.com/veandco/go-sdl2/img"
 	"github.com/veandco/go-sdl2/sdl"
+	"github.com/veandco/go-sdl2/ttf"
 )
 
 var (
@@ -30,6 +31,7 @@ type Engine struct {
 
 	window   *sdl.Window
 	renderer *sdl.Renderer
+	font     *ttf.Font
 }
 
 // NewEngine initializes a new engine instance.
@@ -83,6 +85,22 @@ func (engine *Engine) initialize(env *object.Environment) {
 	if err != nil {
 		panic(fmt.Sprintf("Engine error: Could not initialize SDL - %s", err))
 	}
+
+	err = ttf.Init()
+
+	if err != nil {
+		panic(fmt.Sprintf("Engine error: Could not initialize TTF - %s", err))
+	}
+
+	defer ttf.Quit()
+
+	engine.font, err = ttf.OpenFont("../assets/silver.ttf", 32)
+
+	if err != nil {
+		panic(fmt.Sprintf("Engine error: Could not open font - %s", err))
+	}
+
+	defer engine.font.Close()
 
 	engine.window, err = sdl.CreateWindow(
 		engine.title,

@@ -90,7 +90,7 @@ func main() {
 		return
 	}
 
-	engine := engine.NewEngine("Simple Ghost Example")
+	engine := engine.NewEngine("Engine")
 	engine.SetWindow(800, 600)
 
 	engine.SetLoadFunction(load)
@@ -98,7 +98,14 @@ func main() {
 	engine.SetDrawFunction(draw)
 
 	// Graphics Functions
+	ghost.RegisterFunction("Graphics.clear", engine.GraphicsClearFunction)
 	ghost.RegisterFunction("Graphics.draw", engine.GraphicsDrawFunction)
+	ghost.RegisterFunction("Graphics.filledRectangle", engine.GraphicsFilledRectangleFunction)
+	ghost.RegisterFunction("Graphics.line", engine.GraphicsLineFunction)
+	ghost.RegisterFunction("Graphics.pixel", engine.GraphicsPixelFunction)
+	ghost.RegisterFunction("Graphics.print", engine.GraphicsPrintFunction)
+	ghost.RegisterFunction("Graphics.rectangle", engine.GraphicsRectangleFunction)
+	ghost.RegisterFunction("Graphics.setColor", engine.GraphicsSetColorFunction)
 
 	// Keyboard Functions
 	ghost.RegisterFunction("Keyboard.isDown", engine.KeyboardIsDownFunction)
@@ -106,6 +113,7 @@ func main() {
 	// Window Functions
 	ghost.RegisterFunction("Window.width", engine.WindowWidthFunction)
 	ghost.RegisterFunction("Window.height", engine.WindowHeightFunction)
+	ghost.RegisterFunction("Window.title", engine.WindowTitleFunction)
 
 	ghost.NewScript(string(b))
 	env := ghost.Evaluate()
