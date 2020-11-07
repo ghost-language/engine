@@ -22,7 +22,8 @@ Engine includes a variety of modules to easily use and interact with the various
 ---
 
 ## Window
-#### `Window.bordered(isBordered: boolean)`
+#### `Window.bordered()`
+#### `Window.borderless()`
 #### `Window.fullscreen()`
 #### `Window.width(pixels: number)`
 #### `Window.height(pixels: number)`
