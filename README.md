@@ -7,6 +7,9 @@ Engine is a simple framework to make 2D games in Ghost.
 ## Status
 Currently messing around with SDL and experimenting on what the API should look like.
 
+## Documentation
+Website is currently in progress. You can find a local copy of some preliminary documentation [here](/docs.md).
+
 ## Requirements
 Below are the requirements necessary if working with the Engine source code directly.
 

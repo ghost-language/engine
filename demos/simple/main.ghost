@@ -2,6 +2,8 @@ state := {}
 
 function load() {
     Window.title("Simple Demo")
+    Window.bordered(false)
+    Window.fullscreen()
 
     state.player := {
         'x': 400,

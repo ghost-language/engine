@@ -111,6 +111,8 @@ func main() {
 	ghost.RegisterFunction("Keyboard.isDown", engine.KeyboardIsDownFunction)
 
 	// Window Functions
+	ghost.RegisterFunction("Window.bordered", engine.WindowBorderedFunction)
+	ghost.RegisterFunction("Window.fullscreen", engine.WindowFullscreenFunction)
 	ghost.RegisterFunction("Window.width", engine.WindowWidthFunction)
 	ghost.RegisterFunction("Window.height", engine.WindowHeightFunction)
 	ghost.RegisterFunction("Window.title", engine.WindowTitleFunction)
