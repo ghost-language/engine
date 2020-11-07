@@ -21,6 +21,12 @@ Engine includes a variety of modules to easily use and interact with the various
 
 ---
 
+## Mouse
+#### `Mouse.hideCursor()`
+#### `Mouse.showCursor()`
+
+---
+
 ## Window
 #### `Window.bordered()`
 #### `Window.borderless()`
