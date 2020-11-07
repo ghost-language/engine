@@ -2,8 +2,24 @@ state := {}
 
 function load() {
     Window.title("Bounce Demo")
+    Window.borderless()
+    // Window.fullscreen()
 
-    state.ball := {
+    state.ballOne := {
+        'x': Math.random(Window.width() - 10),
+        'y': Math.random(Window.height() - 10),
+        'dx': -3,
+        'dy': -3,
+    }
+
+    state.ballTwo := {
+        'x': Math.random(Window.width() - 10),
+        'y': Math.random(Window.height() - 10),
+        'dx': -3,
+        'dy': -3,
+    }
+
+    state.ballThree := {
         'x': Math.random(Window.width() - 10),
         'y': Math.random(Window.height() - 10),
         'dx': -3,
@@ -12,19 +28,45 @@ function load() {
 }
 
 function update() {
-    state.ball.y := state.ball.y + state.ball.dy
-    state.ball.x := state.ball.x + state.ball.dx
+    state.ballOne.y := state.ballOne.y + state.ballOne.dy
+    state.ballOne.x := state.ballOne.x + state.ballOne.dx
+    state.ballTwo.y := state.ballTwo.y + state.ballTwo.dy
+    state.ballTwo.x := state.ballTwo.x + state.ballTwo.dx
+    state.ballThree.y := state.ballThree.y + state.ballThree.dy
+    state.ballThree.x := state.ballThree.x + state.ballThree.dx
 
-    if (state.ball.x < 0 or state.ball.x > (Window.width() - 10)) {
-        state.ball.dx := -state.ball.dx
+    if (state.ballOne.x < 0 or state.ballOne.x > (Window.width() - 10)) {
+        state.ballOne.dx := -state.ballOne.dx
     }
 
-    if (state.ball.y < 0 or state.ball.y > (Window.height() - 10)) {
-        state.ball.dy := -state.ball.dy
+    if (state.ballOne.y < 0 or state.ballOne.y > (Window.height() - 10)) {
+        state.ballOne.dy := -state.ballOne.dy
+    }
+
+    if (state.ballTwo.x < 0 or state.ballTwo.x > (Window.width() - 10)) {
+        state.ballTwo.dx := -state.ballTwo.dx
+    }
+
+    if (state.ballTwo.y < 0 or state.ballTwo.y > (Window.height() - 10)) {
+        state.ballTwo.dy := -state.ballTwo.dy
+    }
+
+    if (state.ballThree.x < 0 or state.ballThree.x > (Window.width() - 10)) {
+        state.ballThree.dx := -state.ballThree.dx
+    }
+
+    if (state.ballThree.y < 0 or state.ballThree.y > (Window.height() - 10)) {
+        state.ballThree.dy := -state.ballThree.dy
     }
 }
 
 function draw() {
     Graphics.setColor(79, 209, 197)
-    Graphics.filledRectangle(state.ball.x, state.ball.y, 10, 10)
+    Graphics.filledRectangle(state.ballOne.x, state.ballOne.y, 10, 10)
+
+    Graphics.setColor(255, 105, 180)
+    Graphics.filledRectangle(state.ballTwo.x, state.ballTwo.y, 10, 10)
+
+    Graphics.setColor(104, 211, 145)
+    Graphics.filledRectangle(state.ballThree.x, state.ballThree.y, 10, 10)
 }

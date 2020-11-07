@@ -112,6 +112,7 @@ func main() {
 
 	// Window Functions
 	ghost.RegisterFunction("Window.bordered", engine.WindowBorderedFunction)
+	ghost.RegisterFunction("Window.borderless", engine.WindowBorderlessFunction)
 	ghost.RegisterFunction("Window.fullscreen", engine.WindowFullscreenFunction)
 	ghost.RegisterFunction("Window.width", engine.WindowWidthFunction)
 	ghost.RegisterFunction("Window.height", engine.WindowHeightFunction)

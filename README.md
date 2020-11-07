@@ -1,5 +1,5 @@
 <p align="center"><img src="logo.svg" height="200"></p>
-<p align="center"><img src="bounce.gif" width="400"></p>
+<p align="center"><img src="demo.gif" width="400"></p>
 
 ## About Engine
 Engine is a simple framework to make 2D games in Ghost.

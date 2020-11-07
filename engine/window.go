@@ -9,11 +9,14 @@ import (
 
 // WindowBorderedFunction registers the Window.bordered function with Ghost.
 func (engine *Engine) WindowBorderedFunction(env *object.Environment, args ...object.Object) object.Object {
-	if len(args) != 1 {
-		return ghost.NewError("wrong number of arguments. got=%d, expected=1", len(args))
-	}
+	engine.window.SetBordered(true)
 
-	engine.window.SetBordered(args[0].(*object.Boolean).Value)
+	return ghost.NULL
+}
+
+// WindowBorderlessFunction registers the Window.borderless function with Ghost.
+func (engine *Engine) WindowBorderlessFunction(env *object.Environment, args ...object.Object) object.Object {
+	engine.window.SetBordered(false)
 
 	return ghost.NULL
 }
