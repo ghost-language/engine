@@ -110,6 +110,10 @@ func main() {
 	// Keyboard Functions
 	ghost.RegisterFunction("Keyboard.isDown", engine.KeyboardIsDownFunction)
 
+	// Mouse Functions
+	ghost.RegisterFunction("Mouse.hideCursor", engine.MouseHideCursorFunction)
+	ghost.RegisterFunction("Mouse.showCursor", engine.MouseShowCursorFunction)
+
 	// Window Functions
 	ghost.RegisterFunction("Window.bordered", engine.WindowBorderedFunction)
 	ghost.RegisterFunction("Window.borderless", engine.WindowBorderlessFunction)

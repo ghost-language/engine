@@ -3,7 +3,8 @@ state := {}
 function load() {
     Window.title("Bounce Demo")
     Window.borderless()
-    // Window.fullscreen()
+    Mouse.hideCursor()
+    Window.fullscreen()
 
     state.ballOne := {
         'x': Math.random(Window.width() - 10),
