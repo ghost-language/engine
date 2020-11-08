@@ -118,9 +118,10 @@ func main() {
 	ghost.RegisterFunction("Window.bordered", engine.WindowBorderedFunction)
 	ghost.RegisterFunction("Window.borderless", engine.WindowBorderlessFunction)
 	ghost.RegisterFunction("Window.fullscreen", engine.WindowFullscreenFunction)
-	ghost.RegisterFunction("Window.width", engine.WindowWidthFunction)
 	ghost.RegisterFunction("Window.height", engine.WindowHeightFunction)
+	ghost.RegisterFunction("Window.setSize", engine.WindowSetSizeFunction)
 	ghost.RegisterFunction("Window.title", engine.WindowTitleFunction)
+	ghost.RegisterFunction("Window.width", engine.WindowWidthFunction)
 
 	ghost.NewScript(string(b))
 	env := ghost.Evaluate()
