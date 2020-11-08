@@ -32,6 +32,6 @@ Engine includes a variety of modules to easily use and interact with the various
 #### `Window.borderless()`
 #### `Window.fullscreen()`
 #### `Window.height(pixels: number)`
-#### `Window.setSize(width: number, height: number)
+#### `Window.setSize(width: number, height: number)`
 #### `Window.title(title: string)`
 #### `Window.width(pixels: number)`
