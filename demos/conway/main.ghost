@@ -4,6 +4,8 @@ grid := []
 function load() {
     Window.title("Conway's Game of Life")
     Window.borderless()
+    Window.fullscreen()
+    Mouse.hideCursor()
 
     state.resolution := 20
     state.columns := (Window.width() / state.resolution)
@@ -17,6 +19,17 @@ function load() {
     print("Life spawned...")
 }
 
+function update() {
+    if (Keyboard.isDown("space")) {
+        print("Generating grid...")
+        state.grid := generateGrid()
+
+        print("Spawning life...")
+        state.grid := spawnLife(state.grid)
+        print("Life spawned...")
+    }
+}
+
 function draw() {
     rowList := 0 .. state.rows
     columnList := 0 .. state.columns
@@ -27,7 +40,7 @@ function draw() {
             y := j * state.resolution
 
             if (state.grid[i][j] == 1) {
-                Graphics.setColor(247, 255, 252)
+                Graphics.setColor(255, 255, 255)
                 Graphics.filledRectangle(x, y, 20, 20)
                 Graphics.setColor(26, 32, 44)
                 Graphics.rectangle(x, y, 20, 20)

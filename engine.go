@@ -91,7 +91,7 @@ func main() {
 	}
 
 	engine := engine.NewEngine("Engine")
-	engine.SetWindow(800, 600)
+	engine.SetWindow(1280, 720)
 
 	engine.SetLoadFunction(load)
 	engine.SetUpdateFunction(update)
