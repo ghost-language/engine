@@ -1,0 +1,111 @@
+state := {}
+grid := []
+
+function load() {
+    Window.title("Conway's Game of Life")
+    Window.borderless()
+
+    state.resolution := 20
+    state.columns := (Window.width() / state.resolution)
+    state.rows := (Window.height() / state.resolution)
+
+    print("Generating grid...")
+    state.grid := generateGrid()
+
+    print("Spawning life...")
+    state.grid := spawnLife(state.grid)
+    print("Life spawned...")
+}
+
+function draw() {
+    rowList := 0 .. state.rows
+    columnList := 0 .. state.columns
+
+    for (i := 0; i < state.columns; i := i + 1) {
+        for (j := 0; j < state.rows; j := j + 1) {
+            x := i * state.resolution
+            y := j * state.resolution
+
+            if (state.grid[i][j] == 1) {
+                Graphics.setColor(247, 255, 252)
+                Graphics.filledRectangle(x, y, 20, 20)
+                Graphics.setColor(26, 32, 44)
+                Graphics.rectangle(x, y, 20, 20)
+            }
+        }
+    }
+
+    next := generateGrid()
+    next := spawnLife(next)
+
+    for (i := 0; i < state.columns; i := i + 1) {
+        for (j := 0; j < state.rows; j := j + 1) {
+            status := state.grid[i][j]
+
+            sum := 0
+            neighbors := countNeighbors(i, j)
+
+            // Rule 2
+            // Default status
+            next[i][j] := status
+
+            // Rule 0
+            if (status == 0 and neighbors == 3) {
+                next[i][j] := 1
+            }
+
+            // Rule 1
+            if (status == 1 and (neighbors < 2 or neighbors > 3)) {
+                next[i][j] := 0
+            }
+        }
+    }
+
+    state.grid := next
+}
+
+function generateGrid() {
+    grid := []
+    rowList := 0 .. state.rows
+    columnList := 0 .. state.columns
+
+    for (i in columnList) {
+        grid[i] := rowList
+    }
+
+    return grid
+}
+
+function spawnLife(grid) {
+    rowList := 0 .. state.rows
+    columnList := 0 .. state.columns
+
+    for (i in columnList) {
+        row := []
+
+        for (j in rowList) {
+            row[j] := Math.random(2)
+        }
+
+        grid[i] = row
+    }
+
+    return grid
+}
+
+function countNeighbors(x, y) {
+    sum := 0
+
+     for (i := -1; i < 2; i := i + 1) {
+         for (j := -1; j < 2; j := j + 1) {
+             column := (x + i + state.columns) % state.columns
+             row := (y + j + state.rows) % state.rows
+
+             sum := sum + state.grid[column][row]
+         }
+     }
+
+     sum := sum - state.grid[x][y]
+
+     return sum
+}
