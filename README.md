@@ -1,5 +1,8 @@
+<h1 align="center">Archived. Use <a href="https://github.com/ghost-language/lumen">Lumen</a> instead.</h1>
 <p align="center"><img src="logo.svg" height="200"></p>
 <p align="center"><img src="demo.gif" width="400"></p>
+
+
 
 ## About Engine
 Engine is a simple framework to make 2D games in Ghost.
